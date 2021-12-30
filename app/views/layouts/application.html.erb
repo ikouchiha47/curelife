@@ -1,38 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Docspot</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>CURELIFE</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  </head>
-
-  <body class="text-center">
-    <div class="cover-container d-flex h-100 p-2 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">Curelife</h3>
-        </div>
-      </header>
-
-      <main role="main" class="inner cover">
-        <%= image_tag('icon.png', alt: 'hero icon') %>
-        <h1 class="cover-heading">
-          CURELIFE
-        </h1>
-        <p class="lead">For all your medical needs</p>
-        <div class="content">
-          <%= yield %>
-        </div>
-      </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-        </div>
-      </footer>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+</head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark teal">
+        <%= link_to root_url, class: "navbar-brand" do %>
+         <strong>Curelife</strong>
+         <% end %>
+      </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
     </div>
+    <!-- <footer class="mastfoot mt-auto">
+    </footer> -->
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </body>
 </html>

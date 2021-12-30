@@ -1,12 +1,8 @@
 /*
- * Globals
- */
- .dark-green {
-  background-color: rgb(12, 137, 137) !important;
- }
- .bluish {
-  background-color: rgb(68, 81, 152) !important;
- }
+ *= require bootstrap.min
+ *= require global
+ *= require_self
+*/
 
 
 /* Links */
@@ -40,7 +36,6 @@ a:hover {
 /*
  * Base structure
  */
-
 html,
 body {
   height: 100%;

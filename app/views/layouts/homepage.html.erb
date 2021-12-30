@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Curelife</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "homepage", "data-turbo-track": "reload" %>
+    <% #javascript_include_tag "homepage", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-2 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Curelife</h3>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <%= image_tag('icon.png', alt: 'hero icon') %>
+        <h1 class="cover-heading">
+          CURELIFE
+        </h1>
+        <p class="lead">For all your medical needs</p>
+        <div class="content">
+          <%= yield %>
+        </div>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<h1>Signup</h1>
+
+<%= form_with url: patients_signup_path, method: 'post', class: 'login-form' do |f| %>
+	<div class="form-group">
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |e| %>
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				  <strong><%= e %></strong>
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="form-group">
+		<%= f.label :name, "Patient name" %>
+		<%= f.text_field :name, class: 'form-control', required: true %>
+	</div>
+	<div class="form-group row">
+		<div class="col-4">
+			<%= f.label :name, "Ext" %>
+			<%= f.number_field :country_code, class: 'form-control', required: true, value: 91 %>
+		</div>
+		<div class="col-8">
+			<%= f.label :name, "Phone number" %>
+			<%= f.number_field :phone, class: 'form-control', required: true %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :birthdate, "Birthday" %>
+		<%= f.date_field :birthdate, class: 'form-control', required: true, placeholder: "dd/mm/yyyy" %>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, "Password" %>
+		<%= f.password_field :password, class: 'form-control', required: true %>
+	</div>
+	<br/>
+	<%= f.button "Login", type: 'submit', class: 'btn btn-primary' %>
+<% end %>

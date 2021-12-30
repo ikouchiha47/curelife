@@ -1,0 +1,20 @@
+let container = $("#services-container");
+container.innerHTML = "";
+
+$append(container, '<label for="services" class="form-label">Select Services</label>')
+
+let ul = $('<div class="list-group-flush"></div>')
+
+<% @services.each do |svc| %>
+	$append(ul,
+		`<div class="list-group-item">
+			<p class="mb-0">
+				<img class="rounded img-thumbnail icon" aria-hidden="true" src="/assets/<%= svc.asset_url %>"></img>
+				<a href="<%= user_bookings_url(current_user) %>"><%= svc.description %></a>
+				<%= svc.display %>
+			</p>
+		</div>`
+	)
+<% end %>
+
+$append(container, ul)
