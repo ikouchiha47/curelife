@@ -9,7 +9,7 @@ class Patients::PatientsController < ApplicationController
 		patient = Patient.find_by(phone: patient_params.phone, country_code: patient_params.country_code)
 
 		if patient.try(:authentic?, patient_params[:password])
-			dk = Doorkeeper::AccessToken.create!(application_id: nil, resource_owner_id: patient.id, scopes: 'public')
+			dk = Doorkeeper::AccessToken.create!(application_id: nil, expires_in: 2.hours, resource_owner_id: patient.id, scopes: 'public')
 			session[:access_token] = dk.token
 			redirect_to user_bookings_path(patient) and return
 		end

@@ -1,0 +1,18 @@
+/*
+ * Globals
+ */
+
+
+html,
+body {
+  height: 100%;
+}
+
+
+.body-spacing {
+  margin-top: 2em;
+}
+
+.navbar-brand {
+  padding-left: 0.3125em;
+}

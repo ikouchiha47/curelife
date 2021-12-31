@@ -11,11 +11,7 @@
 </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark teal">
-        <%= link_to root_url, class: "navbar-brand" do %>
-         <strong>Curelife</strong>
-         <% end %>
-      </nav>
+      <%= render 'shared/header' %>
     </header>
     <div class="container body-spacing">
       <%= yield %>

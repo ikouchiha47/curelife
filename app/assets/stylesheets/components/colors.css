@@ -1,0 +1,11 @@
+@layer components {
+	.dark-green {
+	  background-color: rgb(12, 137, 137) !important;
+	}
+	.bluish {
+	  background-color: rgb(68, 81, 152) !important;
+	}
+	.teal {
+	    background-color: #0098b1;
+	}
+}
