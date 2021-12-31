@@ -1,27 +1,28 @@
-<h2 class="text-2xl pb-4 font-medium leading-6 text-gray-900">Login</h2>
+<div class="md:items-center">
+	<h2 class="text-2xl pb-4 font-medium leading-6 text-gray-900">Login</h2>
 
-<%= form_with url: patients_login_path, method: 'post', class: 'w-full max-w-lg' do |f| %>
-	<div class="grid grid-cols-6 gap-6">
-		<% if flash.present? %>
-			<div class="col-span-6">
-				<%= render 'shared/flash' %>
-			</div>
-		<% end %>
-		<div class="col-span-2">
-			<%= f.label :country_code, "Prefix", class: "block text-md font-medium text-gray-700" %>
-			<%= f.number_field :country_code, class: 'input-field', required: true, value: 91 %>
-         </div>
-         <div class="col-span-4">
-			<%= f.label :phone, "Phone", class: "block text-md font-medium text-gray-700" %>
-			<%= f.number_field :phone, class: 'input-field', required: true %>
-		 </div>
-		 <div class="col-span-6">
-			<%= f.label :password, "Password", class: "block text-md font-medium text-gray-700" %>
-			<%= f.password_field :password, class: 'input-field', required: true %>
-		 </div>
-		 <div>
-		 	<%= f.button "Login", type: 'submit', class: 'justify-center submit-button' %>
-		 </div>
-	</div>
-<% end %>
-
+	<%= form_with url: patients_login_path, method: 'post', class: 'w-full max-w-lg' do |f| %>
+		<div class="grid grid-cols-6 gap-6">
+			<% if flash.present? %>
+				<div class="col-span-6">
+					<%= render 'shared/flash' %>
+				</div>
+			<% end %>
+			<div class="col-span-2">
+				<%= f.label :country_code, "Prefix", class: "block text-md font-medium text-gray-700" %>
+				<%= f.number_field :country_code, class: 'input-field', required: true, value: 91 %>
+	         </div>
+	         <div class="col-span-4">
+				<%= f.label :phone, "Phone", class: "block text-md font-medium text-gray-700" %>
+				<%= f.number_field :phone, class: 'input-field', required: true %>
+			 </div>
+			 <div class="col-span-6">
+				<%= f.label :password, "Password", class: "block text-md font-medium text-gray-700" %>
+				<%= f.password_field :password, class: 'input-field', required: true %>
+			 </div>
+			 <div>
+			 	<%= f.button "Login", type: 'submit', class: 'justify-center submit-button' %>
+			 </div>
+		</div>
+	<% end %>
+</div>

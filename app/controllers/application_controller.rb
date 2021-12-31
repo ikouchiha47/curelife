@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 		@doorkeeper_token ||= Doorkeeper::AccessToken.find_by(token: session[:access_token])
 
 		return nil unless @doorkeeper_token.present?
-		return nil if @doorkeeper_token.expired?
+		return nil if @doorkeeper_token.expired? || @doorkeeper_token.revoked?
 
 		return @doorkeeper_token
 	end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "homepage#index"
 
+  get '/users/logout', to: "users#logout"
+  
   namespace :patients do
     get '/login',  to: "patients#login"
     get '/signup', to: "patients#signup"
@@ -26,5 +28,16 @@ Rails.application.routes.draw do
   
   resources :users, only: [] do
     resources :bookings
+  end
+
+  resources :bookings, only: [] do
+    get '/ambulance', to: "bookings#new_ambulance"
+    post '/ambulance', to: "bookings#create_ambulance"
+
+    get '/appointment', to: "bookings#new_appointment"
+    post '/appointment', to: "bookings#create_appointment"
+
+    get '/labtest', to: "bookings#new_labtest"
+    post '/labtest', to: "bookings#create_labtest"
   end
 end
