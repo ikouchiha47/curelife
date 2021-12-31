@@ -1,13 +1,21 @@
 /*
  *= require bootstrap.min
- *= require global
  *= require_self
 */
+
+.body-spacing {
+  margin-top: 2em;
+}
+
+.navbar-brand {
+  padding-left: 0.3125em;
+}
 
 
 /* Links */
 a,
 a:focus,
+a:hover {
 a:hover {
   color: #fff;
 }
@@ -20,6 +28,18 @@ a:hover {
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #fff;
   border: .05rem solid #fff;
+}
+
+.dark-green {
+  background-color: rgb(12, 137, 137) !important;
+}
+
+.bluish {
+  background-color: rgb(68, 81, 152) !important;
+}
+
+.teal {
+    background-color: #0098b1;
 }
 
 /*

@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 </head>
   <body>
     <header>
       <%= render 'shared/header' %>
     </header>
     <div class="container body-spacing">
-      <%= yield %>
+      <main class="container mx-auto mt-28 px-5">
+          <%= yield %>
+      </main>
     </div>
-    <!-- <footer class="mastfoot mt-auto">
-    </footer> -->
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag("pages/#{controller_name}", defer: true) if javascript_exists?("pages/#{controller_name}") %>
   </body>
 </html>
