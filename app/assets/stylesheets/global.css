@@ -17,16 +17,20 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.body-spacing {
+  margin-top: 2em;
+}
+
 .navbar-brand {
   padding-left: 0.3125em;
 }
 
 .dark-green {
   background-color: rgb(12, 137, 137) !important;
- }
- .bluish {
+}
+.bluish {
   background-color: rgb(68, 81, 152) !important;
- }
- .teal {
+}
+.teal {
     background-color: #0098b1;
- }
+}

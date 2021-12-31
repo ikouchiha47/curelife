@@ -4,6 +4,5 @@
   		<%= select_tag 'location_id', options_for_select(@locations.collect{ |u| [u.city, u.id] }), id: "selectCity", class: "form-control", include_blank: 'Select city' %>
 	</div>
 	<div class="col-12" id="services-container">
-  		<label for="services" class="form-label">Select Services</label>
 	</div>
 </div>
