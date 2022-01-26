@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_095005) do
+ActiveRecord::Schema.define(version: 2022_01_26_001129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ambulance_bookings", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "ambulance_id", null: false
     t.text "destination", null: false
     t.text "origin", null: false
@@ -25,7 +26,16 @@ ActiveRecord::Schema.define(version: 2021_12_30_095005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ambulances", force: :cascade do |t|
+    t.string "vehicle_number", null: false
+    t.boolean "booked"
+    t.boolean "blocked", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "appointment_bookngs", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "doctor_id", null: false
     t.datetime "expires_at", precision: 6, null: false
     t.integer "amount_to_pay", null: false
@@ -46,15 +56,53 @@ ActiveRecord::Schema.define(version: 2021_12_30_095005) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable"
+    t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable_type_and_bookable_id"
+  end
+
+  create_table "designations", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "salutation", null: false
+    t.string "name", null: false
+    t.string "country_code"
+    t.string "phone"
+    t.string "email", null: false
+    t.datetime "birthdate", precision: 6, null: false
+    t.boolean "blocked", default: false
+    t.string "password_digest", default: "", null: false
+    t.string "designation_slugs"
+    t.string "years_experience", default: "0", null: false
+    t.string "speciality_ids"
+    t.string "location_ids", null: false
+    t.string "registration_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_doctors_on_email", unique: true
+    t.index ["registration_number"], name: "index_doctors_on_registration_number", unique: true
   end
 
   create_table "lab_test_bookings", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "lab_id", null: false
     t.datetime "expires_at", precision: 6, null: false
     t.integer "amount_to_pay", null: false
     t.string "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "labs", force: :cascade do |t|
+    t.text "name", null: false
+    t.text "address"
+    t.integer "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "registration_number", null: false
+    t.boolean "blacklisted", default: false, null: false
+    t.index ["registration_number"], name: "index_labs_on_registration_number", unique: true
   end
 
   create_table "location_services", force: :cascade do |t|
@@ -71,6 +119,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_095005) do
     t.string "zip_code", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "coordinates"
     t.index ["zip_code", "state_code"], name: "index_locations_on_zip_code_and_state_code", unique: true
   end
 
@@ -116,13 +165,21 @@ ActiveRecord::Schema.define(version: 2021_12_30_095005) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "specialities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_specialities_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string "type", null: false
+    t.string "salutation", null: false
     t.string "name", null: false
     t.string "country_code"
     t.string "phone"
-    t.boolean "blocked", default: false
+    t.string "email"
     t.datetime "birthdate", precision: 6, null: false
-    t.string "type", null: false
+    t.boolean "blocked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest", default: "", null: false

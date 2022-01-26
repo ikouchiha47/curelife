@@ -12,6 +12,6 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.timestamps null: false
     end
 
-    add_index :bookable, [:bookable_type, :bookable_id]
+    add_index :bookings, [:bookable_type, :bookable_id]
   end
 end

@@ -4,6 +4,7 @@ class CreateTableLocationServices < ActiveRecord::Migration[7.0]
       t.string :city, null: false
       t.string :state_code, null: false
       t.string :zip_code, null: false
+      t.string :coordinates
 
       t.timestamps null: false
     end

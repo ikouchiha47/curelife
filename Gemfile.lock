@@ -87,6 +87,8 @@ GEM
     doorkeeper (5.5.4)
       railties (>= 5)
     erubi (1.10.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -205,6 +207,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   doorkeeper
+  faker
   importmap-rails
   jbuilder
   jsbundling-rails
