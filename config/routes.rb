@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :bookings
   end
 
+  resources :doctors, only: [:index, :show]
+
   resources :bookings, only: [] do
     get '/ambulance', to: "bookings#new_ambulance"
     post '/ambulance', to: "bookings#create_ambulance"
