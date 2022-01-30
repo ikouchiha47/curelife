@@ -14,3 +14,4 @@ if($("#selectCity")) {
 		  .catch(err => console.error(err))
 	})
 }
+

@@ -8,3 +8,11 @@
 </div>
 
 <div id="services-container"></div>
+
+<div class="bookings mt-28">
+  <div id="appointments">
+    <% if @appointments.length %>
+      <%= @appointments.length %> Appointments
+    <% end %>
+  </div>
+</div>

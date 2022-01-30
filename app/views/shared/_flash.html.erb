@@ -1,4 +1,5 @@
-<% flash.each do |key, value| %>
+<div class="flash">
+  <% flash.each do |key, value| %>
 	<div class="text-white px-6 py-4 border-0 rounded relative mb-4 <%= flash_class(key) %> ">
 	  <span class="inline-block align-middle mr-8">
 	    <%= value %>
@@ -7,4 +8,5 @@
 	    <span>×</span>
 	  </button>
 	</div>
-<% end %>
+  <% end %>
+</div>

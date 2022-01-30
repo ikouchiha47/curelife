@@ -34,6 +34,10 @@ class Doctor < ApplicationRecord
       Speciality.where(id: speciality_ids.gsub(/[{}]/, '').split(','))
     end
 
+    def full_name
+      "#{salutation}, #{name}"
+    end
+
     private
 
       def serialize_array(array)

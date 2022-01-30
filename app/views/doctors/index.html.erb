@@ -1,18 +1,17 @@
 <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
   <% @doctors.each do |doctor| %>
     <div class="p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-
       <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
         <h3 class="pb-6"><%= doctor.salutation %>, <%= doctor.name %></h3>
 
         <a
           href="#"
-          data-user=<%= current_user.id %>
-          data-doctor=<%= doctor.id %>
+          data-booking-id=<%= @booking_id %>
+          data-user-id=<%= current_user.id %>
+          data-doctor-id=<%= doctor.id %>
           class="bookdoctor inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Book Now
         </a>
-
 
         <!-- Specialities -->
         <div class="font-medium grid grid-cols-none divide-x pt-6">
@@ -28,3 +27,4 @@
   <% end %>
 </div>
 
+<div class="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal"></div>
