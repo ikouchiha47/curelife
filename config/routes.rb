@@ -6,40 +6,44 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "homepage#index"
 
-  get '/users/logout', to: "users#logout"
+  get '/users/logout', to: 'users#logout'
   
   namespace :patients do
-    get '/login',  to: "patients#login"
-    get '/signup', to: "patients#signup"
-    post '/login', to: "patients#authenticate"
-    post '/signup', to: "patients#create"
-    get '/show', to: "users#show"
+    get '/login',  to: 'patients#login'
+    get '/signup', to: 'patients#signup'
+    post '/login', to: 'patients#authenticate'
+    post '/signup', to: 'patients#create'
+    get '/show', to: 'users#show'
   end
 
   namespace :clients do
-    get '/login',  to: "clients#login"
-    get '/signup', to: "clients#signup"
-    post '/login', to: "clients#authenticate"
-    post '/signup', to: "clients#create"
-    get '/show', to: "users#show"
+    get '/login',  to: 'clients#login'
+    get '/signup', to: 'clients#signup'
+    post '/login', to: 'clients#authenticate'
+    post '/signup', to: 'clients#create'
+    get '/show', to: 'users#show'
   end
 
-  get '/services', to: "bookings#services"
-  
+  get '/services', to: 'bookings#services'
+
   resources :users, only: [] do
     resources :bookings
   end
 
-  resources :doctors, only: [:index, :show]
+  resources :doctors, only: %i[index show]
+
 
   resources :bookings, only: [] do
-    get '/ambulance', to: "bookings#new_ambulance"
-    post '/ambulance', to: "bookings#create_ambulance"
+    get '/ambulances', to: 'ambulances#new'
+    post '/ambulances', to: 'ambulances#create'
+    delete '/ambulance/:id', to: 'ambulances#delete'
 
-    get '/appointment', to: "bookings#new_appointment"
-    post '/appointment', to: "bookings#create_appointment"
+    get '/appointments', to: 'appointments#new'
+    post '/appointments', to: 'appointments#create'
+    delete '/appointments/:id', to: 'appointments#delete', as: 'appointments_delete'
 
-    get '/labtest', to: "bookings#new_labtest"
-    post '/labtest', to: "bookings#create_labtest"
+    get '/lab_test', to: 'lab_tests#new'
+    post '/lab_test', to: 'lab_tests#create'
+    delete '/lab_test/:id', to: 'lab_tests#delete'
   end
 end

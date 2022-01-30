@@ -44,14 +44,25 @@ class DoctorSlot < ApplicationRecord
   end
 
   def book(slot_number)
-    bookings = pad_bookings(self.bookings.split(','), slots.length)
-    return false if slot_number > bookings.length
+    with_lock do
+      bookings = pad_bookings(self.bookings.split(','), slots.length)
+      return false if slot_number > bookings.length
 
-    return false if bookings[slot_number] == '1'
+      return false if bookings[slot_number] == '1'
 
-    bookings[slot_number] = '1'
+      bookings[slot_number] = '1'
+      update(bookings: bookings.join(','))
+    end
+  end
 
-    update(bookings: bookings.join(','))
+  def release(slot_number)
+    with_lock do
+      bookings = pad_bookings(self.bookings.split(','), slots.length)
+      return false if slot_number > bookings.length
+
+      bookings[slot_number] = '0'
+      update(bookings: bookings.join(','))
+    end
   end
 
   private

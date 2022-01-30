@@ -3,7 +3,7 @@ class DoctorsController < ApplicationController
 
   def index
     @booking_id = params[:booking_id] || 3
-    @location_ids = params[:locations].map(&:to_i)
+    @location_ids = location_params[:locations].map(&:to_i)
     @doctors = Doctor.at_locations(@location_ids)
   end
 
