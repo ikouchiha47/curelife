@@ -9,7 +9,7 @@ let ul = $('<div class="list-group"></div>')
 	$append(ul,
 		`<div class="mb-4 md:inline-block md:mr-4">
 			<img class="inline-block h-16 w-16 object-cover rounded-full border-2 border-gray-300" src="/assets/<%= svc.asset_url %>"/>
-			<a class="pl-3 text-lg" href="<%= user_bookings_url(current_user) %>"><%= svc.description %></a>
+            <a class="pl-3 text-lg" href="<%= user_booking_url(current_user, svc.id, {locations: [@locationservice.location_id] }) %>"><%= svc.description %></a>
 		</div>`)
 <% end %>
 

@@ -12,20 +12,26 @@ class Doctor < ApplicationRecord
     validates :registration_number, presence: true, uniqueness: true
 
     before_save do
-      self.location_ids = serialize_array(locations || [])
-      self.speciality_ids = serialize_array(specialities || [])
     end
 
-    def self.at_locations(location_ids)
-      where("location_ids LIKE '%?%'", location_ids.join(","))
+    def self.at_locations(location_ids = [])
+      where("location_ids LIKE '%?%'", location_ids)
     end
 
-    def locations_to_a
-      location_ids.gsub(/[{}]/, '').split(',')
+    def locations=(array = [])
+      self.location_ids = serialize_array(array)
     end
 
-    def specialities_to_a
-      speciality_ids.gsub(/[{}]/, '').split(',')
+    def specialities=(array = [])
+      self.speciality_ids = serialize_array(array)
+    end
+
+    def locations 
+      Location.where(id: location_ids.gsub(/[{}]/, '').split(','))
+    end
+
+    def specialities
+      Speciality.where(id: speciality_ids.gsub(/[{}]/, '').split(','))
     end
 
     private

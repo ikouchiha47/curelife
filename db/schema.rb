@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_001129) do
+ActiveRecord::Schema.define(version: 2022_01_30_112913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_26_001129) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "appointment_bookngs", force: :cascade do |t|
+  create_table "appointment_bookings", id: :bigint, default: -> { "nextval('appointment_bookngs_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "doctor_id", null: false
     t.datetime "expires_at", precision: 6, null: false
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_001129) do
     t.string "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "doctor_slot_id", null: false
+    t.integer "slot_number", null: false
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -62,6 +64,18 @@ ActiveRecord::Schema.define(version: 2022_01_26_001129) do
   create_table "designations", force: :cascade do |t|
     t.string "title", null: false
     t.string "slug", null: false
+  end
+
+  create_table "doctor_slots", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.bigint "location_id", null: false
+    t.string "days_of_week", default: "0000000", null: false
+    t.integer "checkup_duration", null: false
+    t.text "slot_template", default: "{}", null: false
+    t.text "bookings", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id", "location_id"], name: "index_doctor_slots_on_doctor_id_and_location_id"
   end
 
   create_table "doctors", force: :cascade do |t|

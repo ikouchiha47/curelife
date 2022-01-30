@@ -8,6 +8,10 @@ function $(el) {
 	return document.querySelector(el)
 }
 
+function $$(el) {
+	return document.querySelectorAll(el)
+}
+
 function $append(parent, el) {
 	if(!parent.nodeType) return;
 	if(el.nodeType) {

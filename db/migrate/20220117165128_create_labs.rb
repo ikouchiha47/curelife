@@ -3,7 +3,7 @@ class CreateLabs < ActiveRecord::Migration[7.0]
     create_table :labs do |t|
       t.text :name, null: false
       t.text :address
-      t.integer :location_id, null: false
+      t.integer :location_id, null: false, limit: 8
 
       t.timestamps null: false
     end

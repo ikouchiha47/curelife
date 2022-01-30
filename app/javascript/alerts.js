@@ -5,3 +5,4 @@ function closeAlert(event){
     }
     element.parentNode.parentNode.removeChild(element.parentNode);
 }
+

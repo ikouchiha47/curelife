@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	helper_method :current_user
+	helper_method :current_user, :current_doctor
 
 	private
 
@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
 		return nil unless doorkeeper_token.present?
 		@current_user ||= User.find(doorkeeper_token.resource_owner_id)
 	end
+
+    def current_doctor
+      return nil unless doorkeeper_token.present?
+      @current_doctor ||= Doctor.find(doorkeeper_token.resource_owner_id)
+    end
 end
