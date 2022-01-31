@@ -15,7 +15,7 @@ FileUtils.chdir APP_ROOT do
 
   puts "== Installing dependencies =="
   system! "gem install bundler --conservative"
-  system("bundle check") || system!("bundle install")
+  system("bundle check") || system!("bundle install --binstubs")
 
   # puts "\n== Copying sample files =="
   # unless File.exist?("config/database.yml")
@@ -27,6 +27,15 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
+
+  puts "\n== Seeding database ==\n"
+  system! "bin/rake db:seed:locations"
+  system! "bin/rake db:seed:location_services"
+  system! "bin/rake db:seed:doctors"
+  system! "bin/rake db:seed:specialities"
+  system! "bin/rake db:seed:labs"
+
+  Process.fork { system! "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch" }
 
   puts "\n== Restarting application server =="
   system! "bin/rails restart"
