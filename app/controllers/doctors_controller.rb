@@ -10,6 +10,7 @@ class DoctorsController < ApplicationController
   private
 
   def location_params
-    params.permit(:locations).with_defaults(locations: [])
+    p params
+    params.permit(locations: []).with_defaults(locations: [])
   end
 end

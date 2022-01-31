@@ -28,7 +28,7 @@ function handleBookDoctor(e) {
     
     let locationID = (new URLSearchParams(window.location.search)).get("locations[]")
 
-    let url = `${window.location.origin}/bookings/${bookingID}/appointment?doctor_id=${doctorID}&location_id=${locationID}`
+    let url = `${window.location.origin}/bookings/${bookingID}/appointments?doctor_id=${doctorID}&location_id=${locationID}`
     fetch(url, {
         method: 'GET',
         headers: {

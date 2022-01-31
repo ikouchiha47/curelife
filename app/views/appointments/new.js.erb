@@ -13,7 +13,7 @@ function modalStr () {
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
       <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
 
-        <%= form_with url: booking_appointment_path, method: 'post', class: 'bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4' do |f| %>
+        <%= form_with url: booking_appointments_path, method: 'post', class: 'bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4' do |f| %>
           <%= f.text_field :location_id, class: 'hidden', value: @location_id, readonly: true %>
           <%= f.text_field :doctor_id, class: 'hidden', value: @doctor_id, readonly: true %>
           <label>Doctor</label>
