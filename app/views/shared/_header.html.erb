@@ -1,33 +1,23 @@
-<nav class="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3 teal">
-	<div class="container px-2 mx-auto flex flex-wrap items-center justify-between">
-		<!-- <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start"> -->
-        <div class="text-center sm:text-left w-full lg:w-auto lg:static lg:block">
-			<img class="inline-block h-16 w-auto" src="<%= asset_path('icon.png') %>" alt="CureLife">
-			<%= link_to("Curelife", root_url, class: "hidden md:inline-block text-2xl font-bold leading-relaxed mr-4 whitespace-nowrap uppercase text-white") %>
-			<!-- <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
-				<span class="block relative w-6 h-px rounded-sm bg-white"></span>
-				<span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-				<span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-			</button> -->
-		</div>
-		<div class="lg:flex flex-grow items-center" id="example-navbar-warning">
-      <!-- <ul class="flex flex-col lg:flex-row list-none ml-auto">
-          <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              Discover
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              Profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">
-              Setting
-            </a>
-          </li>
-      </ul> -->
+<nav style="background-color: #0098b1; font-family: 'Josefin Sans', sans">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <%= link_to "Curelife", root_url, class: "font-bold text-2xl lg:text-4xl text-white" %>
+    <!--<div class="block md:hidden text-white">
+      <button class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+    </div>-->
+    <div class="hidden text-block md:block md:text-white font-medium">
+      <% unless current_user %>
+        <ul class="inline-flex">
+          <li><%= link_to "Patient Signup", patients_signup_url, class: "px-4" %></li>
+          <li><%= link_to "Patient Login", patients_login_url, class: "px-4" %></li>
+        </ul>
+      <% end %>
+    </div>
   </div>
-</div>
 </nav>
+
+

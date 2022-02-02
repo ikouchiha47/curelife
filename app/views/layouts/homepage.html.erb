@@ -6,33 +6,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "homepage", "data-turbo-track": "reload" %>
-    <% #javascript_include_tag "homepage", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans">
   </head>
 
-  <body class="text-center">
-    <div class="cover-container d-flex h-100 p-2 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          
-        </div>
-      </header>
-
-      <main role="main" class="inner cover">
-        <%= image_tag('icon.png', alt: 'hero icon') %>
-        <h1 class="cover-heading">
-          CURELIFE
-        </h1>
-        <p class="lead">For all your medical needs</p>
-        <div class="content">
-          <%= yield %>
-        </div>
-      </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-        </div>
-      </footer>
-    </div>
+  <body class="text-gray-700 bg-white">
+    <%= render 'shared/header' %>
+    <%= yield %>
+    
+    <footer class="mastfoot mt-auto">
+      <div class="inner"></div>
+    </footer>
   </body>
 </html>

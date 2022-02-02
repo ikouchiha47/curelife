@@ -1,6 +1,60 @@
-<div class="btn-group-vertical btn-group-vertical-spaced">
-  <%= link_to "Patient Signup", patients_signup_url, class: "btn btn-primary bluish" %>
-  <%= link_to "Patient Login", patients_login_url, class: "btn btn-primary bluish" %>
-  <%= link_to "Client Signup", clients_signup_url, class: "btn btn-primary dark-green" %>
-  <%= link_to "Client Login", clients_login_url, class: "btn btn-primary dark-green" %>
+<div class="block md:hidden container mx-auto py-8 flex justify-center">
+<% unless current_user %>
+  <ul class="w-48 text-sm font-medium text-white">
+    <li class="py-4 px-4 w-full rounded-lg bg-blue-700">
+      <%= link_to "Patient Signup", patients_signup_url %>
+    </li>
+
+    <li class="py-4 px-4 w-full rounded-lg mt-5 bg-blue-700">
+      <%= link_to "Patient Login", patients_login_url %>
+    </li>
+  </ul>
+<% end %>
 </div>
+
+<div class="md:mt-10 py-5 md:py-20 pl-10">
+  <div class="container mx-auto px-6">
+    <%= image_tag('icon.png', alt: 'hero icon') %>
+    <h2 class="text-4xl font-bold mb-2 text-black">
+      Helping you with faster and easier medical services!
+    </h2>
+    <h3 class="text-2xl pt-4 mb-8 text-gray-400">
+      Find doctors or book lab tests in few easy steps.
+    </h3>
+  </div>
+</div>
+
+
+<div class="py-20 text-center md:pl-10" style="background: linear-gradient(90deg, #667eea 0%, #0098b1 100%)">
+  <div class="container px-6 mx-auto">
+    <%= form_with(url: home_services_path, method: "get", class: "flex flex-row") do |f| %>
+      <%= f.select :location_id, @locations.collect{ |u| [u.city, u.zip_code] }, {}, class: "w-8/12 bg-white text-xl rounded-lg", id: "selectCity", include_blank: 'Select city' %>
+    <%= f.submit "Search", class: "bg-white font-bold rounded-lg ml-2 py-4 px-8 shadow-lg uppercase tracking-wider" %>
+  <% end %>
+  </div>
+</div>
+
+<section class="container mx-auto px-6 p-10">
+  <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">
+    Features
+  </h2>
+  <div class="flex justify-evenly items-center flex-wrap mb-20">
+    <div>
+      <h4 class="text-3xl text-gray-800 font-bold mb-3">Easy Appointment Bookings</h4>
+      <p class="text-gray-600 mb-8">Find doctors in your location and book instantly.</p>
+    </div>
+    <div>
+      <%= image_tag("doctor.jpeg", alt: 'doctor') %>
+    </div>
+  </div>
+
+  <div class="flex justify-evenly items-center flex-wrap mb-20">
+    <div>
+      <%= image_tag("labtest.jpeg", alt: 'lab test`') %>
+    </div>
+    <div>
+      <h4 class="text-3xl text-gray-800 font-bold mb-3">Reporting</h4>
+      <p class="text-gray-600 mb-8">Book lab tests easily</p>
+    </div>
+  </div>
+</section>

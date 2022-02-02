@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "homepage#index"
 
+  get '/home/services', to: 'homepage#services'
   get '/users/logout', to: 'users#logout'
   
   namespace :patients do
