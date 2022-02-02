@@ -2,6 +2,7 @@ FROM ruby:2.7.5-alpine
 
 ENV BUNDLER_VERSION=2.3.1
 
+
 RUN apk add --update --no-cache \
       binutils-gold \
       build-base \
@@ -21,12 +22,12 @@ RUN apk add --update --no-cache \
       make \
       netcat-openbsd \
       nodejs \
+      npm \
       openssl \
       pkgconfig \
       postgresql-dev \
-      python \
-      tzdata \
-      yarn
+      python3 \
+      tzdata
 
 RUN gem install bundler -v 2.3.1
 
@@ -40,8 +41,13 @@ RUN bundle check || bundle install
 
 COPY package.json yarn.lock ./
 
-RUN yarn install --check-files
+RUN npm install -g yarn || yarn install --check-files
+
+COPY . ./
+
+EXPOSE 3001
 
 RUN ./bin/setup
 
-COPY . ./
+CMD ./bin/stage
+

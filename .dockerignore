@@ -1,0 +1,7 @@
+pgdata
+node_modules
+postgres-data
+tmp
+test
+*.log
+

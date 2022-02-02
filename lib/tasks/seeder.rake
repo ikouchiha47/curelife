@@ -7,11 +7,5 @@ namespace :db do
 				load(filename)
 			end
 		end
-
-		task :all => :environment do
-			Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |filename|
-				load(filename)
-			end
-		end
 	end
 end

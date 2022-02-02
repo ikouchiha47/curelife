@@ -17,7 +17,7 @@ locations = [
   {
     "city":"Berhampore",
     "state_code":"West Bengal",
-    "zip_code":"742101",
+    "zip_code":"742102",
   },
   {
     "city":"Dumdum",
@@ -27,10 +27,12 @@ locations = [
 ]
 
 locations.each do |loc|
-  Location.create({
-    zip_code: loc["zip_code"],
-    state_code: loc["state_code"],
-  })
+  p loc
+  Location.create!(
+    city: loc[:city],
+    zip_code: loc[:zip_code],
+    state_code: loc[:state_code],
+  )
 end
 
 puts "Populating success"

@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-    db:
+    postgres:
         image: postgres:14.1
         restart: always
         environment:
@@ -10,19 +10,10 @@ services:
           options:
             max-size: 10m
             max-file: "3"
+        ports:
+          - '5432:5432'
         volumes: 
-          - /home/darksied/dev/dbdata:/var/lib/postgresql/data
-    web_2:
-      build: .
-      depends_on:
-        - db
-      volumes:
-        - .:/app/
-      env_file:
-        - '.env.dev'
-      ports:
-        - '3001:3001'
-
+          - /home/darksied/dev/pgdata:/var/lib/postgresql/data
 volumes:
-  dbdata:
+  pgdata:
 

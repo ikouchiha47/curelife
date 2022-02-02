@@ -37,3 +37,4 @@
 ./pgdata
 ./postgres-data
 
+.env.prod
