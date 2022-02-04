@@ -37,4 +37,5 @@
 ./pgdata
 ./postgres-data
 
-.env.prod
+.env.*
+!.env.sample

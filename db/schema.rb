@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_122254) do
+ActiveRecord::Schema.define(version: 2022_02_03_072932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "appointment_bookings", id: :bigint, force: :cascade do |t|
+  create_table "appointment_bookings", id: :bigint, default: -> { "nextval('appointment_bookngs_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "doctor_id", null: false
     t.datetime "expires_at", precision: 6, null: false
@@ -49,16 +49,16 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
   create_table "bookings", force: :cascade do |t|
     t.string "bookable_type"
     t.bigint "bookable_id"
-    t.string "uuid", null: false
-    t.string "patient_id"
-    t.datetime "booking_time", precision: 6, null: false
     t.string "status", null: false
-    t.text "description"
     t.text "metadata"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "razorpay_id"
+    t.bigint "doctor_id"
+    t.bigint "user_id"
     t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable"
     t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable_type_and_bookable_id"
+    t.index ["doctor_id", "user_id"], name: "index_bookings_on_doctor_id_and_user_id"
   end
 
   create_table "designations", force: :cascade do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.string "slug", null: false
   end
 
-  create_table "doctor_slots", id: :bigint, force: :cascade do |t|
+  create_table "doctor_slots", force: :cascade do |t|
     t.bigint "doctor_id", null: false
     t.bigint "location_id", null: false
     t.string "days_of_week", default: "0000000", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.index ["doctor_id", "location_id"], name: "index_doctor_slots_on_doctor_id_and_location_id"
   end
 
-  create_table "doctors", id: :bigint, force: :cascade do |t|
+  create_table "doctors", force: :cascade do |t|
     t.string "salutation", null: false
     t.string "name", null: false
     t.string "country_code"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.index ["registration_number"], name: "index_doctors_on_registration_number", unique: true
   end
 
-  create_table "lab_test_bookings", id: :bigint, force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "lab_test_bookings", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "lab_id", null: false
     t.datetime "expires_at", precision: 6, null: false
     t.integer "amount_to_pay", null: false
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.index ["zip_code", "state_code"], name: "index_locations_on_zip_code_and_state_code", unique: true
   end
 
-  create_table "oauth_access_grants", id: false, force: :cascade do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id"
     t.string "token", null: false
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_122254) do
     t.index ["slug"], name: "index_specialities_on_slug", unique: true
   end
 
-  create_table "users", id: :bigint, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "type", null: false
     t.string "salutation", null: false
     t.string "name", null: false

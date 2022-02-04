@@ -45,7 +45,7 @@ RUN npm install -g yarn || yarn install --check-files
 
 COPY . ./
 
-EXPOSE 3001
+EXPOSE '3001'
 
 RUN ./bin/setup
 

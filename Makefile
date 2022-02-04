@@ -1,7 +1,7 @@
 .PHONY: run
 
 run:
-	env $(shell cat .env.local | xargs) ./bin/rails s
+	env $(shell cat .env.local | xargs) ./bin/dev
 
 run.cli:
 	env $(shell cat .env.local | xargs) ./bin/rails c

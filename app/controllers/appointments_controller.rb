@@ -64,4 +64,9 @@ class AppointmentsController < ApplicationController
   def update
   end
 
+  private
+
+  def booking_params
+    params.permit(:doctor_id, :slot_number, :location_id)
+  end
 end

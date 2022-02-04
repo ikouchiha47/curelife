@@ -1,6 +1,10 @@
 class AppointmentBooking < ApplicationRecord
   include Bookable
-  enum status: %i[booked confirmed cancelled]
+  enum status: {
+    booked: 'booked',
+    confirmed: 'confirmed',
+    paymentfail: 'paymentfail',
+    canceled: 'cancelled'}
 
   validates :doctor_slot_id, :slot_number, presence: true
 
@@ -21,7 +25,7 @@ class AppointmentBooking < ApplicationRecord
 
   def self.book!(props = {})
     AppointmentBooking.transaction do
-      ab = AppointmentBooking.create!({
+      ab = AppointmentBooking.create({
         user_id: props[:user_id],
         doctor_id: props[:doctor_id],
         doctor_slot_id: props[:doctor_slot_id],
@@ -30,6 +34,21 @@ class AppointmentBooking < ApplicationRecord
         amount_to_pay: props[:amount_to_pay],
         status: :booked
       })
+
+      Rails.logger.error(ab.errors.full_messages)
+
+      raise 'AppointmentBookingFailed' unless ab.valid?
+
+      order = Razorpay::Order.create(
+        amount: props[:amount_to_pay] * 1000,
+        currency: 'INR',
+        receipt: ab.id.to_s
+      )
+
+      p order.inspect
+      raise 'PaymentFailedError' unless order.id.present?
+
+      raise 'SomethingWentWrong' unless ab.update(status: :confirmed)
 
       raise 'SlotBookingFailed' unless DoctorSlot.find(props[:doctor_slot_id]).book(ab.slot_number)
     end

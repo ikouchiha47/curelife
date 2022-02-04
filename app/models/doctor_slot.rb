@@ -51,7 +51,7 @@ class DoctorSlot < ApplicationRecord
       return false if bookings[slot_number] == '1'
 
       bookings[slot_number] = '1'
-      update(bookings: bookings.join(','))
+      update!(bookings: bookings.join(','))
     end
   end
 

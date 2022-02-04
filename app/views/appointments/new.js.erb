@@ -23,11 +23,10 @@ function modalStr () {
           <%= f.label :slot_number, "Select Slot" %>
           <%= f.select :slot_number, options_for_select(@available_slots), {}, class: "w-full bg-gray-100 p-2 mt-2 mb-3" %>
           <div class="py-3 text-right">
-            <%= f.submit "Book", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" %>
+            <%= f.submit "Pay #{@doctorslot.amount_to_pay}", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" %>
             <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700" onclick="toggleModal()">Cancel</button>
           </div>
         <% end %>
-
         </div>
       </div>
     </div>`

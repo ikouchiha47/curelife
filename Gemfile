@@ -81,3 +81,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'faker'
 
 gem 'vanilla-ujs'
+
+gem 'razorpay'
