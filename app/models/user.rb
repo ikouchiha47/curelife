@@ -11,4 +11,9 @@ class User < ApplicationRecord
   def full_name
     "#{salutiation}, #{name}"
   end
+
+  def booking
+    Booking.where(user_id: id, status: :inprogress).order(created_at: :desc).limit(1).first
+  end
+
 end

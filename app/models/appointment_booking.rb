@@ -11,6 +11,8 @@ class AppointmentBooking < ApplicationRecord
   belongs_to :doctor
   belongs_to :user
 
+  scope :active, ->{ where('expires_at > ?', DateTime.now)}
+
   def expired?
     expires_at < DateTime.now
   end
@@ -20,6 +22,8 @@ class AppointmentBooking < ApplicationRecord
       update(expires_at: DateTime.now - 1.hours)
 
       raise 'SlotExpiryFailed' unless DoctorSlot.find(doctor_slot_id).release(slot_number)
+
+      self
     end
   end
 
@@ -39,18 +43,10 @@ class AppointmentBooking < ApplicationRecord
 
       raise 'AppointmentBookingFailed' unless ab.valid?
 
-      order = Razorpay::Order.create(
-        amount: props[:amount_to_pay] * 1000,
-        currency: 'INR',
-        receipt: ab.id.to_s
-      )
-
-      p order.inspect
-      raise 'PaymentFailedError' unless order.id.present?
-
       raise 'SomethingWentWrong' unless ab.update(status: :confirmed)
 
       raise 'SlotBookingFailed' unless DoctorSlot.find(props[:doctor_slot_id]).book(ab.slot_number)
+      ab
     end
   end
 end

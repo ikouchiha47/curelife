@@ -1,0 +1,16 @@
+<div class="flex justify-center">
+  <%= form_with url: booking_appointments_path, method: 'post', class: 'bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4' do |f| %>
+    <%= f.text_field :location_id, class: 'hidden', value: @location_id, readonly: true %>
+    <%= f.text_field :doctor_id, class: 'hidden', value: @doctor_id, readonly: true %>
+    <label>Doctor</label>
+    <input type="text" class="w-full bg-gray-100 p-2 mt-2 mb-3" value="<%= @doctorslot.doctor.full_name %>" readonly />
+    <label>Patient</label>
+    <input type="text" class="w-full bg-gray-100 p-2 mt-2 mb-3" value="<%= current_user.name %>" readonly />
+    <%= f.label :slot_number, "Select Slot" %>
+    <%= f.select :slot_number, options_for_select(@available_slots), {}, class: "w-full bg-gray-100 p-2 mt-2 mb-3" %>
+    <div class="py-3 text-right">
+      <%= f.submit "Book", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" %>
+    </div>
+  <% end %>
+</div>
+

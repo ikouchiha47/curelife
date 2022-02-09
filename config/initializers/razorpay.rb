@@ -1,2 +1,6 @@
-Razorpay.setup(ENV.fetch('RAZORPAY_API'), ENV.fetch('RAZORPAY_SECRET'))
+require_relative 'dotenv.rb'
+
+$config = Dotenv.read('.env.local')
+
+Razorpay.setup($config.fetch('RAZORPAY_API'), $config.fetch('RAZORPAY_SECRET'))
 

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
 
   resources :doctors, only: %i[index show]
 
+  get '/payments', to: 'payments#new'
+  post '/payments', to: 'payments#create'
+  post '/payments/delete', to: 'payments#delete'
 
   resources :bookings, only: [] do
     get '/ambulances', to: 'ambulances#new'

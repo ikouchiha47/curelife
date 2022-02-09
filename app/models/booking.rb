@@ -1,4 +1,7 @@
 class Booking < ApplicationRecord
-	belongs_to :user, foreign_key: :patient_id
-	belongs_to :bookable, polymorphic: true
+  validates :bookable_id, :bookable_type, :doctor_id, :user_id, presence: true
+  enum status: [:inprogress, :confirmed, :failed, :refunded, :cancelled]
+
+  belongs_to :user
+  belongs_to :doctor
 end

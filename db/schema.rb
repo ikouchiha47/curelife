@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_03_072932) do
+ActiveRecord::Schema.define(version: 2022_02_09_193732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,13 @@ ActiveRecord::Schema.define(version: 2022_02_03_072932) do
     t.text "metadata"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "razorpay_id"
+    t.string "uuid"
+    t.string "razorpay_order_id"
+    t.string "razorpay_checkout_id"
+    t.bigint "booking_id"
     t.bigint "doctor_id"
     t.bigint "user_id"
+    t.datetime "expires_at", precision: 6
     t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable"
     t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable_type_and_bookable_id"
     t.index ["doctor_id", "user_id"], name: "index_bookings_on_doctor_id_and_user_id"

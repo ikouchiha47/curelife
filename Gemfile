@@ -83,3 +83,5 @@ gem 'faker'
 gem 'vanilla-ujs'
 
 gem 'razorpay'
+
+gem 'pry-rails', '0.3.9'

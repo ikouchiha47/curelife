@@ -1,10 +1,10 @@
-if($(".bookdoctor")) {
-    let els = $$(".bookdoctor");
+// if($(".bookdoctor")) { 
+    // let els = $$(".bookdoctor"); 
 
-    els.forEach(el => {
-        el.addEventListener("click", handleBookDoctor)
-    })
-}
+    // els.forEach(el => { 
+        // el.addEventListener("click", handleBookDoctor) 
+    // }) 
+// } 
 
 function toggleModal() {
     if(!$("#modal")) { return; }

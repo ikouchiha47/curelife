@@ -4,12 +4,12 @@ class BookingsController < ApplicationController
   def index
     @locations = Location.take(10)
     @appointments = AppointmentBooking
-      .where(user_id: current_user.id).order(created_at: :desc)
+      .preload(:doctor)
+      .active
+      .where(user_id: current_user.id)
+      .order(created_at: :desc)
 
-    @ambulances = AmbulanceBooking
-      .where(user_id: current_user.id).order(created_at: :desc)
-
-    @labtests = LabTestBooking
+    @labtests = LabTestBooking.active
       .where(user_id: current_user.id).order(created_at: :desc)
   end
 

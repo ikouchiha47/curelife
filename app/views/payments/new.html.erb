@@ -1,0 +1,17 @@
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="rzp-button1">Pay</button>
+
+<div id="values"
+  data-key="<%= razorpay_api_key %>"
+  data-order_id="<%= @booking.razorpay_order_id %>"
+  data-currency="INR"
+  data-name="Curelife"
+  data-description="Medical Services"
+  data-success-handler="<%= url_for(controller: 'payments', action: 'create') %>"
+  data-failure-handler="<%= url_for(controller: 'payments', action: 'delete') %>"
+  data-redirect_url="<%= url_for(controller: 'bookings', action: 'index', user_id: current_user.id) %>"
+  data-prefill-name="<%= current_user.name %>"
+  data-prefill-email="<%= current_user.email || 'dummy@gmail.com'%>"
+  />
+  <script src="https://checkout.razorpay.com/v1/checkout.js" data-buttontext="Pay with RazorPay">
+
+  </script>

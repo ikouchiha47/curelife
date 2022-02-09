@@ -5,7 +5,11 @@ class AlterBookingsAddRazorpay < ActiveRecord::Migration[7.0]
     remove_column :bookings, :description, :text, null: false
     remove_column :bookings, :booking_time, :datetime, null: false
 
-    add_column :bookings, :razorpay_id, :string
+    add_column :bookings, :uuid, :string
+    add_column :bookings, :razorpay_order_id, :string
+    add_column :bookings, :rayzorpay_checkout_id, :string
+
+    add_column :bookings, :booking_id, :bigint
     add_column :bookings, :doctor_id, :bigint
     add_column :bookings, :user_id, :bigint
 
